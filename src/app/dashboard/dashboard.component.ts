@@ -9,11 +9,11 @@ import { UserService } from '../user.service';
   providers: [ UserService ]
 })
 export class DashboardComponent implements OnInit {
-
+  users: User[] = [];
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers();
+    this.users = this.userService.getUsers();
   }
 
 }

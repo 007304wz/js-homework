@@ -1,5 +1,6 @@
+<app-create-user-form></app-create-user-form>
 <md-grid-list cols="4" rowHeight="200px" gutterSize="10px">
-  <md-grid-tile *ngFor="let user of userService.users">
+  <md-grid-tile *ngFor="let user of users">
     <md-card>
       <md-card-header>
         <md-icon md-card-avatar color="accent">account_box</md-icon>
@@ -14,7 +15,7 @@
       </md-card-actions>
     </md-card>
   </md-grid-tile>
-        
+
   <md-grid-tile colspan="4">
     <md-card>
       <md-card-header>
@@ -31,3 +32,5 @@
     </md-card>
   </md-grid-tile>
 </md-grid-list>
+
+
