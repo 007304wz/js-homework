@@ -27,4 +27,10 @@
       <button type="submit" class="btn btn-success btn-block" (click)="addNewUser()" >Submit</button>
     </div>
   </form>
+  <div class="alert alert-danger" *ngIf="warning">
+    <strong>All fields required!</strong>
+  </div>
+  <div class="alert alert-warning" *ngIf="emailFormat">
+    <strong>Your email not formatted! You can edit below!</strong>
+  </div>
 </div>

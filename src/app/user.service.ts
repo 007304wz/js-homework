@@ -29,22 +29,14 @@ export class UserService {
 
   addNewUsers(user: User) {
 
-    if(user.first_name !== '' && user.last_name !== '' && user.email !== '') {
+    if (user.first_name !== '' && user.last_name !== '' && user.email !== '') {
       this.users = this.getUsers();
-      this.users.forEach((item) => {
-        if (item.email !== user.email) {
-          this.userDictionary[user.id] = JSON.stringify(user);
-          console.log(this.userDictionary);
-        }else {
-          alert('Email has been added before!');
-          this.subject.next({res: 'Email is not unique!'});
-        }
-      });
+      this.userDictionary[user.id] = JSON.stringify(user);
+      this.subject.next({});
     }else {
       this.subject.next({res: this.serverResponse});
     }
   }
-
   response() {
     return "this is error";
   }

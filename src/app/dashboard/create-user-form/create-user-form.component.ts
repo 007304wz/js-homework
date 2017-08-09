@@ -18,15 +18,19 @@ export class CreateUserFormComponent implements OnInit {
   email = '';
   newUser: User;
   num: number;
-  cannotCommit = true;
+  warning = false;
+  emailFormat = false;
   err: any;
   @Output() addUser: EventEmitter<any> = new EventEmitter();
   constructor(private userService: UserService) {
     this.userService.makeSubscription().subscribe(res => {
       this.err = res.res;
-      if (this.err === 'Email is not unique!') {
-        this.email = this.err;
-      }else if (this.err) {
+      // if (this.err === 'Email is not unique!') {
+      //   this.email = this.err;
+      //   this.emailNotEqual = true;
+      // }else
+      if (this.err) {
+        this.warning = true;
         if (!this.firstName) {
           this.fplaceholder = JSON.parse(this.err).first_name[0];
         }
@@ -37,7 +41,7 @@ export class CreateUserFormComponent implements OnInit {
           this.eplaceholder = JSON.parse(this.err).email[0];
         }
       }else {
-        console.log(this.err);
+        console.log("New User Created");
       }
     });
   }
@@ -51,17 +55,26 @@ export class CreateUserFormComponent implements OnInit {
     return ee.test(this.email);
   }
 
-  resetColor(input: HTMLInputElement) {
-    input.value = '';
-    console.log(input);
+  reset() {
+    this.firstName = this.lastName = this.email = '';
+    this.emailFormat = false;
+    this.warning = false;
   }
+
    addNewUser() {
+    if (this.email !== '') {
+      if (!this.checkEmail()) {
+        this.emailFormat = true;
+        return;
+      }
+    }
      this.num = this.userService.getUsers().length;
 
      this.newUser = { id: this.num + 1, buyer_id: this.num + 1,
        first_name: this.firstName, last_name: this.lastName, email: this.email };
        this.userService.addNewUsers(this.newUser);
        this.addUser.emit('reload');
+       this.reset();
        return;
    }
 }
