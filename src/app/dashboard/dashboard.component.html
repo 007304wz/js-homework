@@ -1,24 +1,25 @@
 <app-create-user-form (addUser)="reloadUser()" ></app-create-user-form>
 <md-grid-list cols="4" rowHeight="300px" gutterSize="10px">
   <md-grid-tile *ngFor="let user of users">
-  <md-card>
-    <md-card-title>
-      <md-icon md-card-avatar color="accent">account_box</md-icon>
-      <md-card-title><h3>{{user.first_name}} {{user.last_name}}</h3></md-card-title>
-    </md-card-title>
-    <md-card-content>
-      <p>Id: </p>
-      <p>Email: {{user.email}}</p>
-    </md-card-content>
-    <md-card-actions>
-      <button md-fab color="accent" routerLink="/users/{{user.id}}"><md-icon>mode_edit</md-icon>Edit</button>
-    </md-card-actions>
-  </md-card>
-</md-grid-tile>
-
-
-  <md-grid-tile colspan="4">
     <md-card>
+      <md-card-title>
+        <a href="#"><md-icon md-card-avatar color="accent" aria-hidden="true">account_box</md-icon></a>
+        <md-card-title><h3>{{user.first_name}} {{user.last_name}}</h3></md-card-title>
+      </md-card-title>
+      <md-card-content>
+        <p>Id:{{user.id}} </p>
+        <p>Email: </p>
+        {{user.email}}
+      </md-card-content>
+      <md-card-actions>
+        <button md-fab color="accent" routerLink="/users/{{user.id}}"><md-icon>mode_edit</md-icon>Edit</button>
+      </md-card-actions>
+    </md-card>
+  </md-grid-tile>
+
+
+  <md-grid-tile colspan="4" >
+    <md-card style="width: 500px; height: 200px">
       <md-card-header>
         <md-card-title><h3>Create New User</h3></md-card-title>
       </md-card-header>
@@ -28,10 +29,8 @@
         </p>
       </md-card-content>
       <md-card-actions>
-          <button md-raised-button color="accent"><md-icon>add</md-icon>New Account</button>
+        <button md-raised-button color="accent"><md-icon>add</md-icon>New Account</button>
       </md-card-actions>
     </md-card>
   </md-grid-tile>
 </md-grid-list>
-
-
