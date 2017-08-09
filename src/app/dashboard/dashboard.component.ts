@@ -21,5 +21,8 @@ export class DashboardComponent implements OnInit {
   reloadUser() {
     this.users = this.userService.getUsers();
   }
+  onEdit(){
+    window.scrollTo(0,0);
+  }
 
 }
