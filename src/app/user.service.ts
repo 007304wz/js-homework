@@ -1,60 +1,60 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
+import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs/Subject';
 
 import { User } from './user';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import { NEW_USERS, NewState } from './init-state';
+
 
 
 @Injectable()
 export class UserService {
 
-  // users: User[] = [];
+  users: User[] = [];
 
-  private serverResponse = '{ "email": [ "can\'t be blank" ], "first_name": [ "can\'t be blank" ], "last_name": [ "can\'t be blank" ] }';
+  private serverResponse = '{ "email": [ "Hi! Email can\'t be blank !" ], "first_name": [ "Hi, I am from fake API :(" ], "last_name": [ "Hi, I am from Service !" ] }';
   private userDictionary = {
     1: '{ "id": 1, "buyer_id": 1, "first_name": "Fred", "last_name": "Flintstone", "email": "fred.flintstone@slaterockandgravel.com" }',
     2: '{ "id": 2, "buyer_id": 2, "first_name": "Barney", "last_name": "Rubble", "email": "barney.rubble@slaterockandgravel.com" }',
     3: '{ "id": 3, "buyer_id": 3, "first_name": "Wilma", "last_name": "Flintstone", "email": "wilma.flinstone@dailygranite.com" }'
   };
-   // private currentUser = (JSON.parse( "[" + Object.keys(this.userDictionary).map(key => this.userDictionary[key]).join(',') + "]"));
 
-  private subject = new BehaviorSubject<NewState>(NEW_USERS);
-
+  private subject = new Subject<any>();
   constructor() {
-    // this.currentUser = (JSON.parse( "[" + Object.keys(this.userDictionary).map(key => this.userDictionary[key]).join(',') + "]"));
-    // console.log(this.currentUser);
   }
-  // getNewUsers(): Observable<User[]> {
-  //   return this.subject.pluck('users');
-  // }
+  makeSubscription() {
+    return this.subject.asObservable();
+  }
+
   addNewUsers(user: User) {
-    // const {users} = this.subject.getValue();
-    // this.subject.next({
-    //   users: [ ...users, {
-    //     id: user.id,
-    //     buyer_id: user.buyer_id,
-    //     first_name: user.first_name,
-    //     last_name: user.last_name,
-    //     email: user.email}]
-    // });
-    // console.log('test');
-    // console.log(this.subject.pluck('destination'));
-    this.userDictionary[user.id] = JSON.stringify(user);
-    console.log(user.id);
+
+    if(user.first_name !== '' && user.last_name !== '' && user.email !== '') {
+      this.users = this.getUsers();
+      this.users.forEach((item) => {
+        if (item.email !== user.email) {
+          this.userDictionary[user.id] = JSON.stringify(user);
+          console.log(this.userDictionary);
+        }else {
+          alert('Email has been added before!');
+          this.subject.next({res: 'Email is not unique!'});
+        }
+      });
+    }else {
+      this.subject.next({res: this.serverResponse});
+    }
   }
+
+  response() {
+    return "this is error";
+  }
+
   getUsers() {
     return JSON.parse( "[" + Object.keys(this.userDictionary).map(key => this.userDictionary[key]).join(',') + "]");
   }
 
   getUser(id: number) {
     return JSON.parse(this.userDictionary[id]);
-  }
-
-  addUser(user: User) {
-    this.userDictionary[user.id] = JSON.stringify(user);
-
   }
 
   private logError(error: any) {

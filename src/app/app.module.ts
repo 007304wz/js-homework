@@ -19,6 +19,7 @@ import { LogoutComponent } from './account/logout.component';
 import { UserDetailComponent } from './user/detail.component';
 import {CreateUserFormComponent} from "./dashboard/create-user-form/create-user-form.component";
 import {UserService} from "../app/user.service";
+import 'rxjs/Rx';
 
 @NgModule({
   declarations: [

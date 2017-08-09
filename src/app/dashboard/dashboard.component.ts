@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   }
   reloadUser() {
     this.users = this.userService.getUsers();
-    console.log(this.userService.getUsers().length);
   }
 
 }
