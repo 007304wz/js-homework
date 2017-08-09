@@ -9,6 +9,8 @@ import { UserService } from '../user.service';
 import { UserDetailComponent } from '../user/detail.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
+import {FormsModule} from "@angular/forms";
+import {CreateUserFormComponent} from "./create-user-form/create-user-form.component";
 
 
 describe('DashboardComponent', () => {
@@ -17,9 +19,9 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, LogoutComponent, UserDetailComponent ],
-      imports: [ MaterialModule.forRoot(), RouterModule, AppRoutingModule ],
-      providers: [ {provide: APP_BASE_HREF, useValue: '/'} ],
+      declarations: [ DashboardComponent, LogoutComponent, UserDetailComponent, CreateUserFormComponent ],
+      imports: [ FormsModule, RouterModule, AppRoutingModule, MaterialModule, MdCardModule, MdGridListModule, MdIconModule, MdToolbarModule, MdButtonModule ],
+      providers: [ UserService, {provide: APP_BASE_HREF, useValue: '/'} ],
     })
     .compileComponents();
   }));
@@ -32,5 +34,8 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should have 3 Initial users', () => {
+    expect(component.users.length).toEqual(3);
   });
 });

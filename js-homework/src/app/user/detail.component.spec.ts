@@ -6,25 +6,27 @@ import { AppRoutingModule } from '../app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { LogoutComponent } from '../account/logout.component';
+import { UserInfoComponent } from '../user-info/user-info.component';
+import {CreateUserFormComponent} from "../dashboard/create-user-form/create-user-form.component";
+import {FormsModule} from "@angular/forms";
+import {Observable} from "rxjs/Observable";
 
 
 describe('UserDetailComponent', () => {
-  let component: UserDetailComponent;
-  let fixture: ComponentFixture<UserDetailComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent, DashboardComponent, LogoutComponent ],
-      imports: [ MaterialModule.forRoot(), RouterModule, AppRoutingModule ],
-      providers: [ {provide: APP_BASE_HREF, useValue: '/'} ]
-    })
-    .compileComponents();
+      providers: [ {provide: APP_BASE_HREF, useValue: '/'} ],
+      declarations: [
+         DashboardComponent, UserInfoComponent, LogoutComponent, UserDetailComponent, CreateUserFormComponent
+      ],
+      imports: [ AppRoutingModule, FormsModule, MaterialModule, MdCardModule, MdGridListModule, MdIconModule, MdToolbarModule, MdButtonModule ],
+    }).compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UserDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should create the DetailComponent', async(() => {
+    const fixture = TestBed.createComponent(UserDetailComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
 
 });

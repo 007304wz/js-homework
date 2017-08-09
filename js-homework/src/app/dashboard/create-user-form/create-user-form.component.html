@@ -1,0 +1,36 @@
+<div class="container">
+  <form action="#">
+    <h3>Add New User</h3>
+    <hr>
+    <div class="row">
+      <div class="input-group input-group-md">
+        <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" name="fn" class="form-control"
+                [(ngModel)]="firstName" placeholder={{fplaceholder}} aria-describedby="sizing-addon1" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group input-group-md">
+        <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" name="ln" class="form-control" [(ngModel)]="lastName"  #lastname
+               placeholder={{lplaceholder}} aria-describedby="sizing-addon2" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group input-group-md">
+        <span class="input-group-addon" id="sizing-addon3"><i class="glyphicon glyphicon-envelope"></i></span>
+        <input type="text" name="email" class="form-control"
+                [(ngModel)]="email" placeholder={{eplaceholder}} aria-describedby="sizing-addon3" required>
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-success btn-block" (click)="addNewUser()" >Submit</button>
+    </div>
+  </form>
+  <div class="alert alert-danger" *ngIf="warning">
+    <strong>All fields required!</strong>
+  </div>
+  <div class="alert alert-warning" *ngIf="emailFormat">
+    <strong>Your email not formatted! You can edit below!</strong>
+  </div>
+</div>
