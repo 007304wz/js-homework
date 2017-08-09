@@ -21,9 +21,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Running unit tests
 
-Run `ng test` in terminal. A brower page will be triggered automatically.
-
-## Note
-
-I used node version 6.10.10. You are supposed not use angular-cli with v4.x.x, and there are some issues also with node v8.x.x.
-
