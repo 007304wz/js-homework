@@ -31,7 +31,7 @@ export class CreateUserFormComponent implements OnInit {
       first_name: this.firstName, last_name: this.lastName, email: this.email };
 
     if (this.firstName && this.lastName && this.email) {
-      this.userService.addUser(this.newUser);
+      this.userService.addNewUser(this.newUser);
       console.log(this.newUser);
     }else {
       console.log('required more info!');
