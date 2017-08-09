@@ -17,8 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LogoutComponent } from './account/logout.component';
 import { UserDetailComponent } from './user/detail.component';
-import {CreateUserFormComponent} from "./dashboard/create-user-form/create-user-form.component";
-import {UserService} from "../app/user.service";
+import { CreateUserFormComponent } from '../app/dashboard/create-user-form/create-user-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,7 @@ import {UserService} from "../app/user.service";
     MdToolbarModule,
     NoopAnimationsModule
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
