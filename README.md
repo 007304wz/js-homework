@@ -21,3 +21,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Running unit tests
 
+Run `ng test` for the testing.
+
+## Note
+
+I used node 6.10.10 to develop this project, and I also tested in node 8.2.1. Please make sure your node is updated latest or just use a version of 6 which is more stable.
